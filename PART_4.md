@@ -171,3 +171,7 @@ public class CategoryServiceImplTest {
     }
 }
 ```
+
+###一、买家商品-service
+
+使用 `PageRequest pageRequest = PageRequest.of(0, 2);` 进行分页查询
