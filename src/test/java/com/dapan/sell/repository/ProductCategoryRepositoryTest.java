@@ -38,8 +38,9 @@ public class ProductCategoryRepositoryTest {
     @Transactional // 测试完，回滚测试数据
     public void updateTest() { // 更新操作时，如果不想设置自增主键，需要添加strategy = GenerationType.IDENTITY
         ProductCategory category = new ProductCategory();
+        category.setCategoryId(6);
         category.setCategoryName("都市");
-        category.setCategoryType(7);
+        category.setCategoryType(8);
         repository.save(category);
     }
 
