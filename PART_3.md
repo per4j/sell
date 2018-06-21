@@ -103,3 +103,71 @@ public class ProductCategoryRepositoryTest {
     }
 }
 ```
+
+###二、买家类目-service
+
+#### 1. 新增CategoryService接口
+
+#### 2. 实现CategoryService接口
+
+```
+@Service
+public class CategoryServiceImpl implements CategoryService {
+
+//    @Autowired // 不推荐对成员变量添加@Autowired注解
+    private ProductCategoryRepository repository;
+
+    @Autowired
+    public CategoryServiceImpl(ProductCategoryRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public ProductCategory findOne(Integer categoryId) {
+        return repository.findById(categoryId).get();
+    }
+
+    @Override
+    public List<ProductCategory> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList) {
+        return repository.findAllByCategoryTypeIn(categoryTypeList);
+    }
+
+    @Override
+    public ProductCategory save(ProductCategory productCategory) {
+        return repository.save(productCategory);
+    }
+}
+```
+
+> 注意：Service的实现类，必须添加@Service注解，不然找不到类
+
+PS: Java变量的初始化顺序为：静态变量或静态语句块–>实例变量或初始化语句块–>构造方法–>@Autowired
+
+#### 3. 测试Service
+
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CategoryServiceImplTest {
+
+    @Autowired
+    private CategoryServiceImpl service;
+
+    @Test
+    public void findOne() {
+        ProductCategory one = service.findOne(1);
+        Assert.assertNotNull(one);
+    }
+
+    @Test
+    public void findAll() {
+        List<ProductCategory> all = service.findAll();
+        Assert.assertNotEquals(0, all.size());
+    }
+}
+```
