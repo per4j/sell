@@ -172,6 +172,71 @@ public class CategoryServiceImplTest {
 }
 ```
 
-###一、买家商品-service
+###二、买家商品-service
 
 使用 `PageRequest pageRequest = PageRequest.of(0, 2);` 进行分页查询
+
+###三、买家商品-api
+#### 1. VO
+    VO是将数据库取回的数据，传给前端使用的，可以避免传不必要的字段
+    
+```
+public class ProductInfoVO {
+
+    @JsonProperty("id")
+    private String productId;
+}
+```
+
+使用JsonProperty注解，可以将数据库中的字段名，转为前端可识别的(见名知意)成员变量。
+
+#### 2. 数据规范
+
+```
+/**
+ * http请求返回的最外层对象
+ */
+@Data
+public class ResultVO<T> {
+
+    /** 错误码 */
+    private Integer code;
+
+    /** 提示语 */
+    private String msg;
+
+    private T data;
+
+}
+```
+
+统一返回的最外层对象，方便前端处理。
+
+#### 3. Controller
+
+```
+@RestController
+@RequestMapping("/buyer/product")
+public class BuyerProductController {
+
+    @GetMapping("/list")
+    public ResultVO list() {
+
+        ResultVO resultVO = new ResultVO();
+        ProductVO productVO = new ProductVO();
+        ProductInfoVO productInfoVO = new ProductInfoVO();
+
+        productVO.setProductInfoVOList(Arrays.asList(productInfoVO));
+
+        resultVO.setData(Arrays.asList(productVO));
+
+        resultVO.setCode(0);
+        resultVO.setMsg("成功");
+
+        return resultVO;
+
+    }
+}
+```
+
+注意，返回的数据格式。
