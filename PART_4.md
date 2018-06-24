@@ -240,3 +240,33 @@ public class BuyerProductController {
 ```
 
 注意，返回的数据格式。
+
+##### 从数据库中加载产品信息
+
+1. lamdba遍历list并将结果赋给另一个list
+
+```
+// 传递方法
+//        for (ProductInfo productInfo : productInfoList) {
+//            categoryTypeList.add(productInfo.getCategoryType());
+//        }
+
+// 精简方法(java8, lambda)
+List<Integer> categoryTypeList = productInfoList.stream()
+        .map( p->p.getCategoryType() )
+        .collect(Collectors.toList());
+```
+
+2. BeanUtils为属性赋值
+
+```
+ProductInfoVO productInfoVO = new ProductInfoVO();
+
+//                    productInfoVO.setProductId(productInfo.getProductId());
+//                    productInfoVO.setProductName(productInfo.getProductName());
+//                    productInfoVO.setProductDescription(productInfo.getProductDescription());
+//                    productInfoVO.setProductIcon(productInfo.getProductIcon());
+//                    productInfoVO.setProductPrice(productInfo.getProductPrice());
+
+                    BeanUtils.copyProperties(productInfo, productInfoVO);
+```

@@ -1,12 +1,14 @@
 package com.dapan.sell.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
 /**
  * 商品详情
  */
+@Data
 public class ProductInfoVO {
 
     @JsonProperty("id")
