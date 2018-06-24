@@ -36,3 +36,23 @@ public enum OrderStatusEnum {
     }
 }
 ```
+
+###二、买家订单-service
+
+####1. 创建订单
+ 
+创建订单流程：
+
+1. 查询商品
+    从前端传来的订单详情中，获取产品id,如果不存在，抛异常；
+
+2. 计算订单总价
+    使用BigDecimal#multiply()，BigDecimal#add()
+    
+    订单详情入库，注意订单详情id的生成规则
+    
+3. 写入数据库
+    注意设置订单的状态，支付的状态
+    
+4. 扣库存
+    从前端dto中获取产品id和数量，调用productService.decreaseStock()减库存
