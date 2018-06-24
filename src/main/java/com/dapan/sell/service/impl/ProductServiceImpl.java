@@ -1,7 +1,10 @@
 package com.dapan.sell.service.impl;
 
 import com.dapan.sell.dataobject.ProductInfo;
+import com.dapan.sell.dto.CartDTO;
 import com.dapan.sell.enums.ProductStatusEnum;
+import com.dapan.sell.enums.ResultEnum;
+import com.dapan.sell.exception.SellException;
 import com.dapan.sell.repository.ProductInfoRepository;
 import com.dapan.sell.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +43,30 @@ public class ProductServiceImpl implements ProductService {
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
     }
+
+    @Override
+    public void increaseStock(List<CartDTO> cartDTOList) {
+
+    }
+
+    @Override
+    public void decreaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList) {
+            ProductInfo productInfo = repository.findById(cartDTO.getProductId()).orElse(null);
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+
+            Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
+            if (result < 0) {
+                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+
+            productInfo.setProductStock(result);
+
+            repository.save(productInfo);
+        }
+    }
+
+
 }
