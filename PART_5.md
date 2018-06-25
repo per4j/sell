@@ -56,3 +56,9 @@ public enum OrderStatusEnum {
     
 4. 扣库存
     从前端dto中获取产品id和数量，调用productService.decreaseStock()减库存
+    
+#### 2. 查询订单
+
+#### 3. 取消订单
+
+#### 4. 完成订单和支付订单
