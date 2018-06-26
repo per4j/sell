@@ -62,3 +62,30 @@ public enum OrderStatusEnum {
 #### 3. 取消订单
 
 #### 4. 完成订单和支付订单
+
+###三、买家订单-api
+
+如果不想向前端返回值为空的字段时，需要进行以下处理：
+
+1. 全局处理
+
+```
+application.yml
+
+  jackson:
+    default-property-inclusion: non_null #全局配置，空值，不返回字段
+```
+
+2. 针对具体类处理
+
+```
+//@JsonInclude(JsonInclude.Include.NON_NULL) // 不返回空值的字段,只针对当前类处理
+```
+
+####1.创建订单
+
+####2.订单列表
+
+####3.订单详情
+
+####4.取消订单
