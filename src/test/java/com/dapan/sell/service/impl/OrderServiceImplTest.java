@@ -85,4 +85,11 @@ public class OrderServiceImplTest {
         OrderDTO paid = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), paid.getPayStatus());
     }
+
+    @Test
+    public void list() {
+        PageRequest pageRequest = PageRequest.of(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
+        Assert.assertTrue("查询所有订单列表", orderDTOPage.getTotalElements() > 0);
+    }
 }
