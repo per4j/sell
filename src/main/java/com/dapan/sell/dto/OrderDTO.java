@@ -3,7 +3,9 @@ package com.dapan.sell.dto;
 import com.dapan.sell.dataobject.OrderDetail;
 import com.dapan.sell.enums.OrderStatusEnum;
 import com.dapan.sell.enums.PayStatusEnum;
+import com.dapan.sell.utils.EnumUtil;
 import com.dapan.sell.utils.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
@@ -39,5 +41,15 @@ public class OrderDTO {
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore // api方式，不包含在json中
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore // api方式，不包含在json中
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 
 }

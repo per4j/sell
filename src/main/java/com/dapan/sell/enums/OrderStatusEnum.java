@@ -1,6 +1,6 @@
 package com.dapan.sell.enums;
 
-public enum OrderStatusEnum {
+public enum OrderStatusEnum implements CodeEnum {
 
     NEW_ORDER(0, "新订单"),
     FINISHED(1, "完结"),
