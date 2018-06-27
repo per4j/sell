@@ -61,3 +61,35 @@ public class SellerOrderController {
 map.put("currentPage", page);
 map.put("size", size);
 ```
+
+3. 卖家订单取消订单实现
+
+```
+    @GetMapping("/cancel")
+    public ModelAndView cancel(@RequestParam("orderId") String orderId, Map<String, Object> map) {
+
+        try {
+            OrderDTO orderDTO = orderService.findOne(orderId);
+            orderService.cancel(orderDTO);
+        } catch (SellException e) {
+            log.error("[卖家端取消订单] 发生异常 {}", e.getMessage());
+
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("msg", ResultEnum.ORDER_CANCEL_SUCCESS.getMessage());
+        map.put("url", "/sell/seller/order/list");
+
+        return new ModelAndView("common/success", map);
+    }
+```
+
+成功/失败后自动跳转
+
+```
+    <script>
+        setTimeout('location.href="${url}"', 3000);
+    </script>
+```
