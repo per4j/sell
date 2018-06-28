@@ -93,3 +93,5 @@ map.put("size", size);
         setTimeout('location.href="${url}"', 3000);
     </script>
 ```
+
+4. 卖家端订单详情的controller实现

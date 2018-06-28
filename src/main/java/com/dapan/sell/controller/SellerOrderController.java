@@ -4,6 +4,7 @@ import com.dapan.sell.dto.OrderDTO;
 import com.dapan.sell.enums.ResultEnum;
 import com.dapan.sell.exception.SellException;
 import com.dapan.sell.service.OrderService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,6 +56,24 @@ public class SellerOrderController {
         map.put("url", "/sell/seller/order/list");
 
         return new ModelAndView("common/success", map);
+    }
+
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam("orderId") String orderId, Map<String, Object> map) {
+        OrderDTO orderDTO = new OrderDTO();
+        try {
+            orderDTO = orderService.findOne(orderId);
+        } catch (SellException e) {
+            log.error("[卖家端查询订单详情] 发生异常 {}", e.getMessage());
+
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("orderDTO", orderDTO);
+
+        return new ModelAndView("order/detail", map);
     }
 
 
