@@ -42,13 +42,13 @@
                                 <td>${productInfo.createTime}</td>
                                 <td>${productInfo.updateTime}</td>
                                 <td>
-                                    <a href="/sell/seller/product/detail?orderId=${productInfo.productId}">详情</a>
+                                    <a href="/sell/seller/product/detail?productId=${productInfo.productId}">详情</a>
                                 </td>
                                 <td>
                                     <#if productInfo.getProductStatusEnum().getMessage() == "下架">
-                                        <a href="/sell/seller/product/on_sale?orderId=${productInfo.productId}">上架</a>
+                                        <a href="/sell/seller/product/on_sale?productId=${productInfo.productId}">上架</a>
                                     <#else>
-                                        <a href="/sell/seller/product/off_sale?orderId=${productInfo.productId}">下架</a>
+                                        <a href="/sell/seller/product/off_sale?productId=${productInfo.productId}">下架</a>
                                     </#if>
                                 </td>
                             </tr>
