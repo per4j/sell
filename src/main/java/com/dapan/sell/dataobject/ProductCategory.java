@@ -22,6 +22,8 @@ public class ProductCategory {
 
     private Integer categoryType;
 
+    private Date createTime;
+
     private Date updateTime;
 
     @Override
@@ -30,6 +32,7 @@ public class ProductCategory {
                 "categoryId=" + categoryId +
                 ", categoryName='" + categoryName + '\'' +
                 ", categoryType='" + categoryType + '\'' +
+                ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +
                 '}';
     }
