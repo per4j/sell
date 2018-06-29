@@ -11,3 +11,4 @@ MODIFICATION
 
 6. [卖家端订单](./PART_6.md)
 7. [商品上下架](./PART_7.md)
+8. [卖家端新增商品和类目](./PART_8.md)
