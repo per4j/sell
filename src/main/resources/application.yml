@@ -9,7 +9,14 @@ spring:
 
   jackson:
     default-property-inclusion: non_null #全局配置，空值，不返回字段
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    password:
 
 server:
   servlet:
     context-path: /sell
+
+url-config:
+  url: http://127.0.0.1:8080/sell/
