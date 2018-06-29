@@ -91,3 +91,5 @@ private Integer productStatus = ProductStatusEnum.UP.getCode(); // 0正常，1�
         return new ModelAndView("common/success", map);
     }
 ```
+
+#### 2卖家类目功能开发
