@@ -28,12 +28,23 @@ public class SellerRepositoryTest {
 
         SellerInfo info = repository.save(sellerInfo);
         Assert.assertNotNull(info);
+    }
 
+    @Test
+    public void findByEmail() {
+        SellerInfo info = repository.findByEmail("dapan@163.com");
+        Assert.assertTrue("邮箱不存在，可以注册", info!= null && info.getEmail().equals("dapan@163.com"));
     }
 
     @Test
     public void findByOpenid() {
         SellerInfo sellerInfo = repository.findByOpenid("abc");
+        Assert.assertNotNull(sellerInfo);
+    }
+
+    @Test
+    public void findByEmailAndPassword() {
+        SellerInfo sellerInfo = repository.findByEmailAndPassword("pan728@163.com", "123456");
         Assert.assertNotNull(sellerInfo);
     }
 }

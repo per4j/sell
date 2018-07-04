@@ -16,4 +16,19 @@ public class SellerServiceImpl implements SellerService {
     public SellerInfo findSellerInfoByOpenid(String openid) {
         return repository.findByOpenid(openid);
     }
+
+    @Override
+    public SellerInfo findSellerInfoByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    public SellerInfo findSellerInfoByEmailAndPassword(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
+    }
+
+    @Override
+    public SellerInfo save(SellerInfo sellerInfo) {
+        return repository.save(sellerInfo);
+    }
 }

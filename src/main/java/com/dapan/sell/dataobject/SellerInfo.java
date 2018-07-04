@@ -14,6 +14,8 @@ public class SellerInfo {
 
     private String sellerName;
 
+    private String email;
+
     private String password;
 
     private String openid;
