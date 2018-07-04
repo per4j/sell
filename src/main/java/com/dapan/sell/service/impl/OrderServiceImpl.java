@@ -14,6 +14,7 @@ import com.dapan.sell.repository.OrderDetailRepository;
 import com.dapan.sell.repository.OrderMasterRepository;
 import com.dapan.sell.service.OrderService;
 import com.dapan.sell.service.ProductService;
+import com.dapan.sell.service.WebSocket;
 import com.dapan.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -44,6 +45,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -95,6 +99,10 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
 
         productService.decreaseStock(cartDTOList);
+
+        // 发送webSocket消息
+        webSocket.sendMessage(orderMaster.getOrderId());
+
 
         return orderDTO;
     }
