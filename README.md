@@ -20,3 +20,4 @@ MODIFICATION
 13. [登录注册](./PART_13.md)
 14. [webSocket下单提醒](./PART_14.md)
 15. [上传Excel文件，并导到mysql](./PART_15.md)
+16. [mybatis注解方式使用](./PART_16.md)
