@@ -15,12 +15,13 @@ public class CategoryServiceImpl implements CategoryService {
 //    @Autowired // 不推荐对成员变量添加@Autowired注解
     private ProductCategoryRepository repository;
 
-    private ProductCategoryDao dao; // No qualifying bean of type 'com.dapan.sell.dataobject.dao.ProductCategoryDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+//    @Autowired
+//    private ProductCategoryDao dao; // No qualifying bean of type 'com.dapan.sell.dataobject.dao.ProductCategoryDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 
     @Autowired
-    public CategoryServiceImpl(ProductCategoryDao dao, ProductCategoryRepository repository) {
+    public CategoryServiceImpl(ProductCategoryRepository repository) {
         this.repository = repository;
-        this.dao = dao;
+//        this.dao = dao;
     }
 
     @Override
