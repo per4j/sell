@@ -71,4 +71,10 @@ public class ProductCategoryMapperTest {
         int delete = mapper.deleteByCategoryType(101);
         Assert.assertEquals(1, delete);
     }
+
+    @Test
+    public void selectByCategoryType() {
+        ProductCategory category = mapper.selectByCategoryType(100);
+        Assert.assertNotNull(category);
+    }
 }
